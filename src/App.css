@@ -22,3 +22,14 @@ textarea,
 button {
   font-family: inherit;
 }
+
+@font-face {
+  font-family: "StardosStencil";
+  src: url("static/fonts/StardosStencil-Regular.ttf") format("Truetype");
+}
+
+@font-face {
+  font-family: "StardosStencil";
+  src: url("static/fonts/StardosStencil-Bold.ttf") format("Truetype");
+  font-weight: bold;
+}
