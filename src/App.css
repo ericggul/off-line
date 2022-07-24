@@ -23,6 +23,9 @@ button {
   font-family: inherit;
 }
 
+/* fonts */
+
+/*StardosStencil */
 @font-face {
   font-family: "StardosStencil";
   src: url("static/fonts/StardosStencil-Regular.ttf") format("Truetype");
@@ -32,4 +35,56 @@ button {
   font-family: "StardosStencil";
   src: url("static/fonts/StardosStencil-Bold.ttf") format("Truetype");
   font-weight: bold;
+}
+
+/* IbarraRealNova */
+
+@font-face {
+  font-family: "IbarraRealNova";
+  src: url("static/fonts/IbarraRealNova-Regular.ttf") format("Truetype");
+}
+
+@font-face {
+  font-family: "IbarraRealNova";
+  src: url("static/fonts/IbarraRealNova-Bold.ttf") format("Truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "IbarraRealNova";
+  src: url("static/fonts/IbarraRealNova-Medium.ttf") format("Truetype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "IbarraRealNova";
+  src: url("static/fonts/IbarraRealNova-SemiBold.ttf") format("Truetype");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "IbarraRealNova";
+  src: url("static/fonts/IbarraRealNova-Italic.ttf") format("Truetype");
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "IbarraRealNova";
+  src: url("static/fonts/IbarraRealNova-BoldItalic.ttf") format("Truetype");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "IbarraRealNova";
+  src: url("static/fonts/IbarraRealNova-MediumItalic.ttf") format("Truetype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "IbarraRealNova";
+  src: url("static/fonts/IbarraRealNova-SemiBoldItalic.ttf") format("Truetype");
+  font-weight: 600;
+  font-style: italic;
 }

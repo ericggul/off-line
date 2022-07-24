@@ -8,10 +8,9 @@ export const StyledFiveTimesDostoevsky = styled.div`
 
   font-family: StardosStencil;
   background: hsl(235, 50%, 7%);
-  color: hsl(235, 100%, 95%);
 `;
 
 export const Text = styled.div`
-
-  font-size: 70px;
-`
+  font-size: ${({ theme }) => theme.windowWidth * 0.1}px;
+  color: hsl(235, 100%, ${({ lightness }) => lightness}%);
+`;

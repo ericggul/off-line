@@ -2,12 +2,12 @@ import React, { useState, useRef, useEffect } from "react";
 import * as S from "./styles";
 
 //audio player
-
 import Audio from "static/audio/UnAmoreCosiGrande.mp3";
 
 function FiveTimesDostoevsky() {
   const audioRef = useRef();
   const [number, setNumber] = useState(20);
+  const [lightness, setLightness] = useState(85);
 
   useEffect(() => {
     if (audioRef.current) {
@@ -61,6 +61,7 @@ function FiveTimesDostoevsky() {
 
       let number = sum / dataRef.current.length;
       setNumber(20 + number ** 1.8);
+      setLightness(85 + Math.floor((number / 256) * 11) * 5);
     }
   }
 
@@ -72,7 +73,7 @@ function FiveTimesDostoevsky() {
 
   return (
     <S.StyledFiveTimesDostoevsky>
-      <S.Text>5 X 2 X 2 = {number.toFixed(0)}</S.Text>
+      <S.Text lightness={lightness}>5 X 2 X 2 = {number.toFixed(0)}</S.Text>
       <audio crossOrigin={"anonymous"} loop ref={audioRef} src={Audio} title={"Un Amore Cosi Grande"} />
     </S.StyledFiveTimesDostoevsky>
   );
