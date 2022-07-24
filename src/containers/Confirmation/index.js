@@ -11,7 +11,7 @@ function Confirmation() {
   return (
     <>
       {step === "lobby" && <Lobby goNextStep={() => setStep("floors")} />}
-      {step === "floors" && <Floors />}
+      {step === "floors" && <Floors returnPreviousStep={() => setStep("lobby")} />}
     </>
   );
 }

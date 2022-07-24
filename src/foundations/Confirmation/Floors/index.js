@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import * as S from "./styles";
 
-function Floors() {
+function Floors({ returnPreviousStep }) {
   //number: number of confirmations
   const [number, setNumber] = useState(3);
   const [id, setId] = useState("");
@@ -28,6 +27,29 @@ function Floors() {
     }
   }, [confirmationNumber, confirmPasswords, password]);
 
+  function handleRegisterClick() {
+    if (buttonActivated) {
+      alert("Congratulations! You have successfully registered!");
+      returnPreviousStep();
+    }
+  }
+
+  let timeoutRef = useRef();
+  useEffect(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    timeoutRef.current = setTimeout(() => {
+      setId("");
+      setPassword("");
+      setConfirmPasswords([""]);
+      setConfirmationNumber(0);
+      setButtonActivated(false);
+      returnPreviousStep();
+    }, 30000);
+    return () => clearTimeout(timeoutRef.current);
+  }, [confirmPasswords]);
+
   return (
     <S.StyledConfirmation>
       <S.Background />
@@ -40,22 +62,26 @@ function Floors() {
         <S.SingleComp>
           <S.Label>Password</S.Label>
           <S.ID
-            value={"*".repeat(password.length)}
+            type="password"
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
-            wrong={password !== "" && !new RegExp("^(?=.*[A-Za-z])(?=.*d)[A-Za-zd]{8,}$").test(password)}
+            wrong={password !== "" && !/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/.test(password)}
             onBlur={() => {
               if (confirmationNumber === 0) {
                 setConfirmationNumber(1);
               }
             }}
+            onCopy={(e) => e.preventDefault()}
           />
+          {password !== "" && !/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/.test(password) && <S.Wrong>Requires at least one lowercase letter, one capital letter and one digit.</S.Wrong>}
         </S.SingleComp>
 
         {new Array(confirmationNumber).fill(0).map((_, i) => (
           <S.SingleComp key={i}>
             <S.Label>{"Confirm the ".repeat(i)}Confirm Password</S.Label>
             <S.ID
-              value={"*".repeat(confirmPasswords[i].length)}
+              type="password"
+              value={confirmPasswords[i]}
               onChange={(e) =>
                 setConfirmPasswords((pw) => {
                   let copy = [...pw];
@@ -73,12 +99,15 @@ function Floors() {
                   }
                 }
               }}
+              onPaste={(e) => e.preventDefault()}
             />
           </S.SingleComp>
         ))}
       </S.InputForms>
 
-      <S.RegisterButton buttonActivated={buttonActivated}>Register</S.RegisterButton>
+      <S.RegisterButton buttonActivated={buttonActivated} onClick={handleRegisterClick}>
+        Register
+      </S.RegisterButton>
     </S.StyledConfirmation>
   );
 }

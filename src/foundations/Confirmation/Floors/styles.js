@@ -4,7 +4,12 @@ import { FlexCenterStyle, WholeContainer } from "static/styles";
 
 export const StyledConfirmation = styled.div`
   ${FlexCenterStyle};
-  ${WholeContainer};
+  position: absolute;
+  width: ${({ theme }) => theme.windowWidth}px;
+  min-height: ${({ theme }) => theme.windowHeight}px;
+
+  overflow-y: scroll;
+
   font-family: StardosStencil;
 
   flex-direction: column;
@@ -22,11 +27,12 @@ export const Background = styled.div`
 export const InfoPrompt = styled.div`
   font-size: 2rem;
   line-height: 2.5rem;
-  margin: 2rem;
+  margin-top: 2rem;
 `;
 
 export const InputForms = styled.div`
   ${FlexCenterStyle};
+  margin: 2rem 0;
   flex-direction: column;
 `;
 
@@ -40,6 +46,12 @@ export const Label = styled.label`
   font-size: 1.2rem;
   margin-bottom: 0.4rem;
   max-width: ${({ theme }) => Math.min(theme.windowWidth * 0.7, 500)}px;
+`;
+
+export const Wrong = styled.div`
+  margin: 0.3rem 0;
+  font-size: 0.8rem;
+  color: red;
 `;
 
 const InputStyle = css`
@@ -73,6 +85,7 @@ export const ID = styled.input`
 
 export const RegisterButton = styled.div`
   margin: 2rem 0;
+  margin-bottom: 4rem;
   font-size: 1.5rem;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
