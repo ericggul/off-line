@@ -5,6 +5,7 @@
   "dependencies": {
     "@mediapipe/face_mesh": "^0.4.1633559619",
     "@mediapipe/pose": "^0.5.1635988162",
+    "@react-spring/web": "^9.5.2",
     "@react-three/cannon": "^6.3.0",
     "@react-three/drei": "^9.17.1",
     "@react-three/fiber": "^8.2.0",
@@ -29,7 +30,7 @@
     "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
-    "react-spring": "^9.5.0",
+    "react-spring": "^9.5.2",
     "redux": "^4.2.0",
     "styled-components": "^5.3.5",
     "three": "^0.142.0",
