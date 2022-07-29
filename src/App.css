@@ -88,3 +88,15 @@ button {
   font-weight: 600;
   font-style: italic;
 }
+
+/* NicolasCochin-Regular.ttf */
+@font-face {
+  font-family: "NicolasCochin";
+  src: url("static/fonts/NicolasCochin-Regular.ttf") format("Truetype");
+}
+
+/* Dior Font */
+@font-face {
+  font-family: "Dior";
+  src: url("static/fonts/Dior.otf") format("opentype");
+}
