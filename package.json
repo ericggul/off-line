@@ -2,6 +2,7 @@
   "name": "off-line",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ericggul.github.io/off-line",
   "dependencies": {
     "@mediapipe/face_mesh": "^0.4.1633559619",
     "@mediapipe/pose": "^0.5.1635988162",
@@ -21,6 +22,7 @@
     "axios": "^0.27.2",
     "body-scroll-lock": "^4.0.0-beta.0",
     "email-validator": "^2.0.4",
+    "gh-pages": "^4.0.0",
     "hygen": "^6.2.7",
     "js-cookie": "^3.0.1",
     "keen-slider": "^6.7.0",
@@ -42,7 +44,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
