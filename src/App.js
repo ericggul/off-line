@@ -19,7 +19,7 @@ function App() {
 
   return (
     <ThemeProvider theme={{ windowWidth, windowHeight }}>
-      <BrowserRouter basename={"/"}>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
           <Route path="/" default element={<FiveTimesDostoevsky />} />
           <Route path="/rating1" element={<Rating1 />} />
