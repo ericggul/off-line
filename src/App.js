@@ -19,7 +19,7 @@ function App() {
 
   return (
     <ThemeProvider theme={{ windowWidth, windowHeight }}>
-      <BrowserRouter>
+      <BrowserRouter basename={"https://ericggul.github.io/off-line"}>
         <Routes>
           <Route path="/" element={<FiveTimesDostoevsky />} />
           <Route path="/rating1" element={<Rating1 />} />
