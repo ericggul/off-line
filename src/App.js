@@ -21,12 +21,13 @@ function App() {
     <ThemeProvider theme={{ windowWidth, windowHeight }}>
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
-          <Route path="/" default element={<FiveTimesDostoevsky />} />
-          <Route path="/rating1" element={<Rating1 />} />
-          <Route path="/fivetimesdostoevsky" element={<FiveTimesDostoevsky />} />
-          <Route path="/confirmation" element={<Confirmation />} />
-          <Route path="/oasis" element={<Oasis />} />
-          <Route path="/instructions" element={<Instructions />} />
+          <Route exact path="/" default element={<FiveTimesDostoevsky />}>
+            <Route exact path="/rating1" element={<Rating1 />} />
+            <Route exact path="/fivetimesdostoevsky" element={<FiveTimesDostoevsky />} />
+            <Route exact path="/confirmation" element={<Confirmation />} />
+            <Route exact path="/oasis" element={<Oasis />} />
+            <Route exact path="/instructions" element={<Instructions />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
