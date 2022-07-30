@@ -1,7 +1,7 @@
 {
   "name": "off-line",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "homepage": "https://ericggul.github.io/off-line",
   "dependencies": {
     "@mediapipe/face_mesh": "^0.4.1633559619",
