@@ -21,6 +21,7 @@ function App() {
     <ThemeProvider theme={{ windowWidth, windowHeight }}>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<FiveTimesDostoevsky />} />
           <Route path="/rating1" element={<Rating1 />} />
           <Route path="/fivetimesdostoevsky" element={<FiveTimesDostoevsky />} />
           <Route path="/confirmation" element={<Confirmation />} />
