@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/off-line/static/css/main.21d94296.css",
+    "main.js": "/off-line/static/js/main.28345e66.js",
+    "static/media/UnAmoreCosiGrande.mp3": "/off-line/static/media/UnAmoreCosiGrande.132c956d448b3c00143d.mp3",
+    "static/media/NicolasCochin-Regular.ttf": "/off-line/static/media/NicolasCochin-Regular.5af711ad12afe4892742.ttf",
+    "static/media/IbarraRealNova-SemiBoldItalic.ttf": "/off-line/static/media/IbarraRealNova-SemiBoldItalic.1ed900a2a37826da3076.ttf",
+    "static/media/IbarraRealNova-MediumItalic.ttf": "/off-line/static/media/IbarraRealNova-MediumItalic.d1b2396bff32c5ab2c7f.ttf",
+    "static/media/IbarraRealNova-BoldItalic.ttf": "/off-line/static/media/IbarraRealNova-BoldItalic.6cde3bba47c6291c160f.ttf",
+    "static/media/IbarraRealNova-Italic.ttf": "/off-line/static/media/IbarraRealNova-Italic.9c0834a0f128a0b1c8ea.ttf",
+    "static/media/IbarraRealNova-SemiBold.ttf": "/off-line/static/media/IbarraRealNova-SemiBold.5c8142ad2c71fbc20f1e.ttf",
+    "static/media/IbarraRealNova-Medium.ttf": "/off-line/static/media/IbarraRealNova-Medium.ba9b89f9887cca449dde.ttf",
+    "static/media/IbarraRealNova-Regular.ttf": "/off-line/static/media/IbarraRealNova-Regular.cd814f8eb4ddf2d3cb55.ttf",
+    "static/media/IbarraRealNova-Bold.ttf": "/off-line/static/media/IbarraRealNova-Bold.5e9d7972998d2d690a4f.ttf",
+    "static/media/StardosStencil-Regular.ttf": "/off-line/static/media/StardosStencil-Regular.653b33500cc1e43b6fa2.ttf",
+    "static/media/Dior.otf": "/off-line/static/media/Dior.22ac4aa1ecdd29d5abc9.otf",
+    "static/media/StardosStencil-Bold.ttf": "/off-line/static/media/StardosStencil-Bold.1f0aada097920b373758.ttf",
+    "index.html": "/off-line/index.html",
+    "static/media/star-fill.svg": "/off-line/static/media/star-fill.2fcec2f29c837b88a3b1f25468c5e500.svg",
+    "static/media/star.svg": "/off-line/static/media/star.f4323ed779592b668663ec8f1d82c65d.svg",
+    "main.21d94296.css.map": "/off-line/static/css/main.21d94296.css.map",
+    "main.28345e66.js.map": "/off-line/static/js/main.28345e66.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.21d94296.css",
+    "static/js/main.28345e66.js"
+  ]
+}
