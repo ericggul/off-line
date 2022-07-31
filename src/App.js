@@ -14,7 +14,7 @@ import FiveTimesDostoevsky from "containers/FiveTimesDostoevsky";
 import Confirmation from "containers/Confirmation";
 import Instructions from "containers/Instructions";
 import Rebellion from "containers/Rebellion";
-import Range from "containers/Range";
+import RangeStars from "containers/RangeStars";
 import Oasis from "containers/Oasis";
 
 function App() {
@@ -30,7 +30,7 @@ function App() {
           <Route exact path="/confirmation" element={<Confirmation />} />
           <Route exact path="/instructions" element={<Instructions />} />
           <Route exact path="/rebellion" element={<Rebellion />} />
-          <Route exact path="/range" element={<Range />} />
+          <Route exact path="/range-stars" element={<RangeStars />} />
           <Route exact path="/oasis" element={<Oasis />} />
         </Routes>
       </BrowserRouter>

@@ -5,6 +5,7 @@ export const StyledRange = styled.div`
   ${FlexCenterStyle};
   ${WholeContainer};
   position: relative;
+  background: hsl(239, 81%, 7%);
 `;
 
 export const Input = styled.input`
@@ -19,8 +20,10 @@ export const Plus = styled.div.attrs((props) => ({
     opacity: props.show ? 1 : 0,
     transform: `translate(-50%, -50%) rotate(${props.rotation}deg)`,
     fontSize: props.size + "rem",
+    color: props.color,
   },
 }))`
   position: absolute;
   transition: all 0.4s;
+  pointer-events: none;
 `;

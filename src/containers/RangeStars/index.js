@@ -10,24 +10,23 @@ function Range() {
 
   const pluses = useMemo(() => {
     const arr = [];
-    for (let i = 0; i < 300; i++) {
+    for (let i = 0; i < 400; i++) {
       arr.push({
         x: getRandom(0, windowWidth),
         y: getRandom(0, windowHeight),
         show: getRandom(getRandom(0, 50), getRandom(50, 100)),
-        size: getRandom(3, 5),
+        size: getRandom(0.8, getRandom(0.8, getRandom(1, 5))),
+        color: `hsl(${getRandom(197, 360)}, 80%, 91%)`,
       });
     }
     return arr;
   }, [windowWidth, windowHeight]);
 
-  console.log(value);
-
   return (
     <S.StyledRange>
       <S.Input type="range" value={value} onChange={(e) => setValue(e.target.value)} min="0" max="100" />
       {pluses.map((plus, i) => (
-        <S.Plus key={i} left={plus.x} top={plus.y} show={plus.show < value} rotation={getRandom(0, 720)} size={plus.size}>
+        <S.Plus key={i} left={plus.x} top={plus.y} show={plus.show < value} rotation={getRandom(0, 720)} color={plus.color} size={plus.size}>
           +
         </S.Plus>
       ))}
