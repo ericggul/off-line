@@ -15,6 +15,10 @@ import Confirmation from "containers/Confirmation";
 import Instructions from "containers/Instructions";
 import Rebellion from "containers/Rebellion";
 import RangeStars from "containers/RangeStars";
+
+//Aug 2022
+import Vibration from "containers/Vibration";
+import Opposition from "containers/Opposition";
 import Oasis from "containers/Oasis";
 
 function App() {
@@ -31,6 +35,9 @@ function App() {
           <Route exact path="/instructions" element={<Instructions />} />
           <Route exact path="/rebellion" element={<Rebellion />} />
           <Route exact path="/range-stars" element={<RangeStars />} />
+
+          <Route exact path="/vibration" element={<Vibration />} />
+          <Route exact path="/opposition" element={<Opposition />} />
           <Route exact path="/oasis" element={<Oasis />} />
         </Routes>
       </BrowserRouter>

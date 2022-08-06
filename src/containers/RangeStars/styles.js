@@ -11,6 +11,7 @@ export const StyledRange = styled.div`
 export const Input = styled.input`
   width: 20rem;
   transform: rotate(90deg);
+  z-index: 2;
 `;
 
 export const Plus = styled.div.attrs((props) => ({

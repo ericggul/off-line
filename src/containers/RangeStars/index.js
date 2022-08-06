@@ -8,19 +8,21 @@ function Range() {
   const [value, setValue] = useState(0);
   const [windowWidth, windowHeight] = useResize();
 
+  const division = useMemo(() => (new Date().getMinutes() % 60) + 20, []);
+
   const pluses = useMemo(() => {
     const arr = [];
     for (let i = 0; i < 400; i++) {
       arr.push({
         x: getRandom(0, windowWidth),
         y: getRandom(0, windowHeight),
-        show: getRandom(getRandom(0, 50), getRandom(50, 100)),
+        show: getRandom(getRandom(division - 2, division), getRandom(division, division + 2)),
         size: getRandom(0.8, getRandom(0.8, getRandom(1, 5))),
         color: `hsl(${getRandom(197, 360)}, 80%, 91%)`,
       });
     }
     return arr;
-  }, [windowWidth, windowHeight]);
+  }, [windowWidth, windowHeight, division]);
 
   return (
     <S.StyledRange>
