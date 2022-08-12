@@ -7,4 +7,7 @@ export const StyledVibration = styled.div`
 
   transform: ${({ pos }) => `translate(${pos.x}px, ${pos.y}px)`};
   transition: transform 0.03s ease-in-out;
+
+  background: black;
+  color: white;
 `;

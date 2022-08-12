@@ -1,11 +1,8 @@
-import React from 'react';
-import * as S from './styles';
+import React from "react";
+import * as S from "./styles";
 
-function No() {
-  return (
-    <S.StyledNo>
-      No
-    </S.StyledNo>
-  );
+function No({ test }) {
+  // console.log(test);
+  return <S.StyledNo>No</S.StyledNo>;
 }
 export default No;

@@ -18,6 +18,8 @@ import RangeStars from "containers/RangeStars";
 
 //Aug 2022
 import Vibration from "containers/Vibration";
+import Epsilon from "containers/Epsilon";
+import SquarePillars from "containers/SquarePillars";
 import Opposition from "containers/Opposition";
 import Oasis from "containers/Oasis";
 
@@ -37,6 +39,8 @@ function App() {
           <Route exact path="/range-stars" element={<RangeStars />} />
 
           <Route exact path="/vibration" element={<Vibration />} />
+          <Route exact path="/epsilon" element={<Epsilon />} />
+          <Route exact path="/square-pillars" element={<SquarePillars />} />
           <Route exact path="/opposition" element={<Opposition />} />
           <Route exact path="/oasis" element={<Oasis />} />
         </Routes>
