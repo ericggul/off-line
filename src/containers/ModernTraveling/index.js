@@ -43,13 +43,13 @@ function Gates() {
     let length = 400;
     let result = [];
     for (let i = 0; i < length; i++) {
-      const speed = getRandom(0.6, 1);
+      const speed = getRandom(0.6, 2);
       result.push({
         idle: speed * getRandom(5, 25),
-        step1: speed * getRandom(5, 15),
-        step2: speed * getRandom(3, getRandom(5, 10)),
+        step1: speed * getRandom(5, 20),
+        step2: speed * getRandom(5, getRandom(5, 15)),
         step3: speed * getRandom(1, getRandom(1, 5)),
-        step4: speed * getRandom(3, 5),
+        step4: speed * getRandom(3, 15),
         initialDelay: getRandom(0, 10),
       });
     }

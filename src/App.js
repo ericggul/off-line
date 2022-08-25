@@ -21,7 +21,7 @@ import Vibration from "containers/Vibration";
 import Epsilon from "containers/Epsilon";
 import Layout from "containers/Layout";
 import Controller from "containers/Controller";
-import Gates from "containers/Gates";
+import ModernTraveling from "containers/ModernTraveling";
 import Bascilica from "containers/Bascilica";
 
 import SquarePillars from "containers/SquarePillars";
@@ -37,7 +37,7 @@ function App() {
         <Routes>
           <Route exact path="/" default element={<FiveTimesDostoevsky />} />
           <Route exact path="/rating1" element={<Rating1 />} />
-          <Route exact path="/fivetimesdostoevsky" element={<FiveTimesDostoevsky />} />
+          <Route exact path="/five-times-dostoevsky" element={<FiveTimesDostoevsky />} />
           <Route exact path="/confirmation" element={<Confirmation />} />
           <Route exact path="/instructions" element={<Instructions />} />
           <Route exact path="/rebellion" element={<Rebellion />} />
@@ -47,7 +47,7 @@ function App() {
           <Route exact path="/epsilon" element={<Epsilon />} />
           <Route exact path="/layout" element={<Layout />} />
           <Route exact path="/controller" element={<Controller />} />
-          <Route exact path="/gates" element={<Gates />} />
+          <Route exact path="/modern-traveling" element={<ModernTraveling />} />
           <Route exact path="/bascilica" element={<Bascilica />} />
 
           <Route exact path="/square-pillars" element={<SquarePillars />} />
