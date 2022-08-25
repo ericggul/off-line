@@ -10,20 +10,17 @@ const initialState = {
 
 export default function useRecorder() {
   const [recorderState, setRecorderState] = useState(initialState);
-  const [dataState, setDataState] = useState([]);
 
   async function startRecording() {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       setRecorderState((prev) => ({ ...prev, initRecording: true, mediaStream: stream }));
-      analyseAudio();
     } catch (e) {
       console.log(e);
     }
   }
 
   function saveRecording(recorder) {
-    stopAnalyse();
     if (recorder.state !== "inactive") recorder.stop();
     setRecorderState((prev) => ({ ...prev, initRecording: false }));
   }
@@ -33,8 +30,9 @@ export default function useRecorder() {
     let recordingInterval = null;
     if (recorderState.initRecording) {
       recordingInterval = setInterval(() => {
-        setRecorderState((prev) => ({ ...prev, recordingSeconds: (prev.recordingSeconds + 1) % 60 }));
-      }, 50);
+        analyseAudio();
+        setRecorderState((prev) => ({ ...prev, recordingSeconds: prev.recordingSeconds + 0.01 }));
+      }, 10);
     } else {
       clearInterval(recordingInterval);
     }
@@ -73,6 +71,7 @@ export default function useRecorder() {
 
   //analyser
   const analyserRef = useRef();
+  const dataRef = useRef();
 
   async function initAudioSetting(stream) {
     if (!stream) return;
@@ -81,44 +80,19 @@ export default function useRecorder() {
     let audioCtx = new AudioContext();
     analyserRef.current = audioCtx.createAnalyser();
     analyserRef.current.fftSize = 512;
-    setDataState(new Uint8Array(analyserRef.current.frequencyBinCount));
-
+    dataRef.current = new Uint8Array(analyserRef.current.frequencyBinCount);
     const source = audioCtx.createMediaStreamSource(stream);
     source.connect(analyserRef.current);
   }
 
-  let nowRef = useRef(Date.now());
-  let thenRef = useRef(Date.now());
-  let animationRef = useRef();
-
   function analyseAudio() {
-    animationRef.current = requestAnimationFrame(analyseAudio);
-    //controlling frame
-    nowRef.current = Date.now();
-    let delta = nowRef.current - thenRef.current;
-    if (delta > 30 && dataState) {
-      thenRef.current = nowRef.current;
-
-      analyserRef.current.getByteFrequencyData(dataState);
-      let result = dataState;
-      console.log(result);
-    }
+    analyserRef.current.getByteFrequencyData(dataRef.current);
   }
-
-  function stopAnalyse() {
-    cancelAnimationFrame(animationRef.current);
-  }
-
-  useEffect(() => {
-    if (animationRef.current) {
-      return () => cancelAnimationFrame(animationRef.current);
-    }
-  }, [animationRef]);
 
   return {
     recorderState,
     analyserRef,
-    dataState,
+    dataRef,
     startRecording: () => startRecording(),
     saveRecording: () => saveRecording(recorderState.mediaRecorder),
   };

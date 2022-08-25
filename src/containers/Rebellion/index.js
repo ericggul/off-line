@@ -35,7 +35,6 @@ function Switch() {
       let whole = xLength * yLength;
       let arr = [];
       for (let i = 0; i < whole; i++) {
-        const VAR = Math.exp(-0.5 * (iterations - 0.5));
         if (Math.random() < Math.exp(-iterations) / (1 + Math.exp(-iterations)) ** 2) {
           arr.push(i);
         }

@@ -100,3 +100,14 @@ button {
   font-family: "Dior";
   src: url("static/fonts/Dior.otf") format("opentype");
 }
+
+@font-face {
+  font-family: "Frutiger";
+  src: url("static/fonts/Frutiger/Frutiger.ttf") format("Truetype");
+}
+
+@font-face {
+  font-family: "Frutiger";
+  src: url("static/fonts/Frutiger/Frutiger_bold.ttf") format("Truetype");
+  font-weight: bold;
+}

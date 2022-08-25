@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useMemo, useRef } from "react";
 import * as S from "./styles";
 
 import { Canvas, useThree, useFrame, useLoader } from "@react-three/fiber";
@@ -7,56 +7,51 @@ import * as THREE from "three";
 
 import Effect from "foundations/SquarePillars/Effect";
 
-function Model() {
-  //create image
+const getRandom = (a, b) => Math.random() * (b - a) + a;
 
-  const [texture, setTexture] = useState(null);
+function Model({ yLoc, color, speed }) {
+  const ref = useRef();
 
-  function createTexture() {
-    const text = "Learn More";
-    const bitmap = document.createElement("canvas");
-    var g = bitmap.getContext("2d");
-    bitmap.width = 100;
-    bitmap.height = 100;
-    g.font = "Bold 20px Arial";
-
-    g.fillStyle = "white";
-    g.fillText(text, 0, 20);
-    g.strokeStyle = "black";
-    g.strokeText(text, 0, 20);
-    setTexture(bitmap);
-  }
-
-  // useEffect(() => {
-  //   createTexture();
-  // }, [])
-
-  //canvas contents will be used for a texture
-
-  const props = useTexture({
-    map: texture,
+  useFrame((state) => {
+    const time = state.clock.getElapsedTime();
+    ref.current.position.y = yLoc * 1;
+    ref.current.rotation.y = time * speed;
   });
-  console.log(props);
 
   return (
-    <mesh>
-      <boxGeometry attach="geometry" args={[10, 100, 10]} />
-      <meshLambertMaterial color="white" attach="material" />
+    <mesh ref={ref}>
+      <boxGeometry attach="geometry" args={[4, 1, 4]} />
+      <meshLambertMaterial color={color} attach="material" />
     </mesh>
   );
 }
 
 function SquarePillars() {
+  const modelsNumber = 51;
+  const modelsArray = useMemo(() => {
+    let arr = [];
+    for (let i = 0; i < modelsNumber; i++) {
+      arr.push({
+        yLoc: i - (modelsNumber - 1) / 2,
+
+        color: `hsl(${getRandom(0, 360)}, 100%, 75%)`,
+        speed: getRandom(0, getRandom(1, 3)) * (Math.random() < 0.5 ? -1 : 1),
+      });
+    }
+    return arr;
+  }, []);
   return (
     <S.StyledSquarePillars>
       <Canvas shadows dpr={[1, 2]} gl={{ alpha: false, antialias: false }} camera={{ fov: 90, position: [0, 0, 10], near: 1, far: 5000 }}>
-        <ambientLight intensity={0.5} />
-        <pointLight position={[100, 100, 100]} color={"#F6DA77"} intensity={1} />
-        <pointLight position={[-50, 80, -100]} color="#FFF500" intensity={0.8} />
-        <pointLight position={[100, -150, -100]} color="#FCFAD1" intensity={0.9} />
+        <ambientLight intensity={0.4} />
+        <pointLight position={[100, 100, 100]} color={"#F6DA77"} intensity={0.5} />
+        <pointLight position={[-50, 80, -100]} color="#AAF500" intensity={0.3} />
+        <pointLight position={[100, -150, -100]} color="#FCFAD1" intensity={0.5} />
 
         <Suspense fallback={null}>
-          <Model />
+          {modelsArray.map((data, i) => (
+            <Model {...data} key={i} />
+          ))}
         </Suspense>
 
         <OrbitControls />

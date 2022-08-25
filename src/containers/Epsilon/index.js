@@ -91,7 +91,7 @@ const NALLE = [
 
 function Epsilon() {
   const UP_TO = 69;
-  const WAIT_SECONDS = 5000;
+  const WAIT_SECONDS = 3000;
 
   const [idx, setIdx] = useState(0);
 

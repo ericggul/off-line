@@ -5,7 +5,10 @@ import * as S from "./styles";
 import useRecorder from "utils/hooks/useRecorder";
 
 //components
-import No from "foundations/Opposition/No";
+import NoEntry from "foundations/Opposition/NoEntry";
+import NoText from "foundations/Opposition/NoText";
+
+import NoIsNo from "foundations/Opposition/NoIsNo";
 
 function Opposition() {
   const { recorderState, analyserRef, dataRef, startRecording, saveRecording } = useRecorder();
@@ -18,18 +21,11 @@ function Opposition() {
     }
   }
 
-  //drawing logic
-  const [test, setTest] = useState([]);
-  function draw(result) {
-    setTest(result);
-  }
-
-  console.log(test);
   return (
-    <S.StyledOpposition>
-      <S.Button onClick={handleClick}>{recorderState.initRecording ? "Save" : "Start"}</S.Button>
-
-      <No test={dataRef.current} />
+    <S.StyledOpposition onClick={handleClick}>
+      {/* {recorderState && recorderState.recordingSeconds && <NoIsNo seconds={recorderState.recordingSeconds} />} */}
+      {dataRef && dataRef.current && <NoEntry data={dataRef.current} />}
+      {dataRef && dataRef.current && <NoText data={dataRef.current} />}
     </S.StyledOpposition>
   );
 }
