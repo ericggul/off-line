@@ -22,6 +22,8 @@ import Epsilon from "containers/Epsilon";
 import Layout from "containers/Layout";
 import Controller from "containers/Controller";
 import ModernTraveling from "containers/ModernTraveling";
+import Seconds from "containers/Seconds";
+
 import Bascilica from "containers/Bascilica";
 
 import SquarePillars from "containers/SquarePillars";
@@ -48,6 +50,7 @@ function App() {
           <Route exact path="/layout" element={<Layout />} />
           <Route exact path="/controller" element={<Controller />} />
           <Route exact path="/modern-traveling" element={<ModernTraveling />} />
+          <Route exact path="/seconds" element={<Seconds />} />
           <Route exact path="/bascilica" element={<Bascilica />} />
 
           <Route exact path="/square-pillars" element={<SquarePillars />} />
