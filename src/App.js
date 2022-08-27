@@ -23,6 +23,7 @@ import Layout from "containers/Layout";
 import Controller from "containers/Controller";
 import ModernTraveling from "containers/ModernTraveling";
 import Seconds from "containers/Seconds";
+import FriendlyGuideToEnjoyThisArtwork from "containers/FriendlyGuideToEnjoyThisArtwork";
 
 import Bascilica from "containers/Bascilica";
 
@@ -51,6 +52,8 @@ function App() {
           <Route exact path="/controller" element={<Controller />} />
           <Route exact path="/modern-traveling" element={<ModernTraveling />} />
           <Route exact path="/seconds" element={<Seconds />} />
+          <Route exact path="/friendly-guide-to-enjoy-this-artwork" element={<FriendlyGuideToEnjoyThisArtwork />} />
+
           <Route exact path="/bascilica" element={<Bascilica />} />
 
           <Route exact path="/square-pillars" element={<SquarePillars />} />

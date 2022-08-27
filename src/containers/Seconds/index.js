@@ -25,7 +25,6 @@ function Second() {
   function speak(second) {
     if (second > 0) {
       const synth = window.speechSynthesis;
-      console.log("ehere");
 
       var msg = new SpeechSynthesisUtterance(`${second} ${second >= 2 ? "seconds" : "second"}`);
       msg.pitch = 1;

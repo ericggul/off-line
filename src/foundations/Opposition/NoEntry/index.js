@@ -18,7 +18,7 @@ function NoEntry({ data }) {
   return (
     <S.StyledNoEntry>
       {entryPositions.map((pos, i) => (
-        <S.NoEntry key={i} style={{ left: `${pos.left}px`, top: `${pos.top}px`, transform: `rotate(${data[i * 4]}deg)`, opacity: `${data[i * 4] > 100 ? 1 : 0}` }}>
+        <S.NoEntry key={i} style={{ left: `${pos.left}px`, top: `${pos.top}px`, opacity: `${Math.max(data[i * 4] - 100, 0) * 0.01}` }}>
           <S.Inner />
         </S.NoEntry>
       ))}
