@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/off-line/static/css/main.43d7bb56.css",
-    "main.js": "/off-line/static/js/main.2d954aeb.js",
+    "main.js": "/off-line/static/js/main.6b628b01.js",
     "static/media/UnAmoreCosiGrande.mp3": "/off-line/static/media/UnAmoreCosiGrande.132c956d448b3c00143d.mp3",
     "static/media/Bascilica.jpeg": "/off-line/static/media/Bascilica.3a5e299148dbabf8a5f5.jpeg",
     "static/media/NicolasCochin-Regular.ttf": "/off-line/static/media/NicolasCochin-Regular.5af711ad12afe4892742.ttf",
@@ -23,10 +23,10 @@
     "static/media/star-fill.svg": "/off-line/static/media/star-fill.2fcec2f29c837b88a3b1f25468c5e500.svg",
     "static/media/star.svg": "/off-line/static/media/star.f4323ed779592b668663ec8f1d82c65d.svg",
     "main.43d7bb56.css.map": "/off-line/static/css/main.43d7bb56.css.map",
-    "main.2d954aeb.js.map": "/off-line/static/js/main.2d954aeb.js.map"
+    "main.6b628b01.js.map": "/off-line/static/js/main.6b628b01.js.map"
   },
   "entrypoints": [
     "static/css/main.43d7bb56.css",
-    "static/js/main.2d954aeb.js"
+    "static/js/main.6b628b01.js"
   ]
 }
