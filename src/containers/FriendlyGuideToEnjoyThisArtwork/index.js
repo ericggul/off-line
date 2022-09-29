@@ -15,31 +15,51 @@ const QUESTIONS = [
   "Why don't you take a photograph of this list, so you can refer to it when you look at the art?",
 ];
 
+const GRAMMAR_LIST = [
+  "Shitty",
+  "Commercial",
+  "Awful",
+  "Disaster",
+  "Copy",
+  "Copycat",
+  `Don't want to`,
+  "Racist",
+  "Not",
+  `Ain't`,
+  "Never",
+  "Neither",
+  "Hardly",
+  "Worse",
+  "Worst",
+  "hate",
+  "hated",
+  "bad",
+  "no",
+  "nothing",
+];
+
 //to do: self-reflection effect(using webcam)
 function FriendlyGuideToEnjoyThisArtwork() {
   const [prepared, setPrepared] = useState(false);
   const [idx, setIdx] = useState(0);
+  const [getAudioResponse, setGetAudioResponse] = useState(false);
+  const [answer, setAnswer] = useState(false);
 
   useEffect(() => {
-    if (prepared) {
-      const interval = setInterval(() => {
-        setIdx((idx) => (idx + 1) % QUESTIONS.length);
-      }, 5000);
-
-      return () => clearInterval(interval);
+    if (prepared && idx < QUESTIONS.length) {
+      speak(QUESTIONS[idx]);
     }
-  }, [prepared]);
+  }, [idx, prepared]);
 
-  useEffect(() => {
-    speak(QUESTIONS[idx]);
-  }, [idx]);
-
-  function speak(sentence) {
+  async function speak(sentence) {
     const synth = window.speechSynthesis;
     var msg = new SpeechSynthesisUtterance(sentence);
     msg.pitch = 1;
     msg.rate = 1;
     synth.speak(msg);
+    msg.addEventListener("end", () => {
+      setGetAudioResponse(true);
+    });
   }
 
   //prepare video
@@ -88,10 +108,64 @@ function FriendlyGuideToEnjoyThisArtwork() {
     setVideoReady(true);
   }
 
+  //audio rec
+  useEffect(() => {
+    if (getAudioResponse) {
+      analyseVoice();
+    }
+  }, [getAudioResponse]);
+
+  const recognitionRef = useRef(null);
+
+  //voice recognition test
+  async function analyseVoice() {
+    const grammar = `#JSGF V1.0; grammar phrase; public <phrase> = ${GRAMMAR_LIST.join(" | ")};`;
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const SpeechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList;
+
+    const recognition = new SpeechRecognition();
+    const speechRecognitionList = new SpeechGrammarList();
+    speechRecognitionList.addFromString(grammar, 1);
+    recognition.grammars = speechRecognitionList;
+    recognition.lang = "en-GB";
+    recognition.start();
+    recognitionRef.current = recognition;
+
+    recognition.continuous = true;
+    recognition.interimResults = true;
+
+    recognition.nomatch = () => {
+      setAnswer("not recognised");
+    };
+
+    recognition.onerror = (event) => {
+      setAnswer("not recognised");
+      console.log("Error occurred in recognition: " + event.error);
+    };
+
+    recognition.onresult = (event) => {
+      setAnswer(event.results[0][0].transcript);
+      setGetAudioResponse(false);
+    };
+  }
+
+  useEffect(() => {
+    if (answer) {
+      const timeout = setTimeout(() => {
+        setIdx((idx) => idx + 1);
+        setAnswer("");
+      }, 2500);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [answer]);
+
   return (
     <S.StyledFriendlyGuideToEnjoyThisArtwork onClick={() => setPrepared(true)}>
       <S.Video ref={videoRef} />
-      <S.Text> {prepared ? QUESTIONS[idx] : "CLICK"}</S.Text>
+      <S.Text> {prepared ? (idx < QUESTIONS.length ? QUESTIONS[idx] : "The End") : "CLICK"}</S.Text>
+      <S.Answer>{answer}</S.Answer>
     </S.StyledFriendlyGuideToEnjoyThisArtwork>
   );
 }

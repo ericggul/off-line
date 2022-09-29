@@ -4,16 +4,27 @@ import { FlexCenterStyle, WholeContainer } from "static/styles";
 export const StyledFriendlyGuideToEnjoyThisArtwork = styled.div`
   ${FlexCenterStyle};
   ${WholeContainer};
-  background: #060b71;
+  flex-direction: column;
+  background: #002fa7;
   color: white;
-  font-size: 3rem;
+  font-size: 2rem;
   text-transform: uppercase;
 `;
 
 export const Text = styled.div`
-  width: 50%;
+  width: 70%;
   text-align: center;
   opacity: 1;
+`;
+
+export const Answer = styled.div`
+  width: 70%;
+  font-size: 1.5rem;
+  height: 6rem;
+  margin-top: 3rem;
+  text-align: center;
+  opacity: 1;
+  text-transform: lowercase;
 `;
 
 export const Video = styled.video`
