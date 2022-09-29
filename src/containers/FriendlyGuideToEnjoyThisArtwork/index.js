@@ -115,8 +115,6 @@ function FriendlyGuideToEnjoyThisArtwork() {
     }
   }, [getAudioResponse]);
 
-  const recognitionRef = useRef(null);
-
   //voice recognition test
   async function analyseVoice() {
     const grammar = `#JSGF V1.0; grammar phrase; public <phrase> = ${GRAMMAR_LIST.join(" | ")};`;
@@ -125,19 +123,17 @@ function FriendlyGuideToEnjoyThisArtwork() {
     const SpeechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList;
 
     const recognition = new SpeechRecognition();
-    const speechRecognitionList = new SpeechGrammarList();
-    speechRecognitionList.addFromString(grammar, 1);
-    recognition.grammars = speechRecognitionList;
+    if (SpeechGrammarList) {
+      const speechRecognitionList = new SpeechGrammarList();
+      speechRecognitionList.addFromString(grammar, 1);
+      recognition.grammars = speechRecognitionList;
+    }
+
     recognition.lang = "en-GB";
     recognition.start();
-    recognitionRef.current = recognition;
 
     recognition.continuous = true;
     recognition.interimResults = true;
-
-    recognition.nomatch = () => {
-      setAnswer("not recognised");
-    };
 
     recognition.onerror = (event) => {
       setAnswer("not recognised");
