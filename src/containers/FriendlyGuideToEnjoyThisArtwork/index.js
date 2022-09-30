@@ -108,6 +108,10 @@ function FriendlyGuideToEnjoyThisArtwork() {
     setVideoReady(true);
   }
 
+  useEffect(() => {
+    setupVoice();
+  }, []);
+
   //audio rec
   useEffect(() => {
     if (getAudioResponse) {
@@ -115,8 +119,7 @@ function FriendlyGuideToEnjoyThisArtwork() {
     }
   }, [getAudioResponse]);
 
-  //voice recognition test
-  async function analyseVoice() {
+  async function setupVoice() {
     const grammar = `#JSGF V1.0; grammar phrase; public <phrase> = ${GRAMMAR_LIST.join(" | ")};`;
 
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -130,6 +133,31 @@ function FriendlyGuideToEnjoyThisArtwork() {
     }
 
     recognition.lang = "en-GB";
+    recognition.start();
+
+    const timeout = setTimeout(() => {
+      recognition.stop();
+    }, 1000);
+    return () => clearTimeout(timeout);
+  }
+
+  //voice recognition test
+  async function analyseVoice() {
+    console.log("analyse");
+    const grammar = `#JSGF V1.0; grammar phrase; public <phrase> = ${GRAMMAR_LIST.join(" | ")};`;
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const SpeechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList;
+
+    const recognition = new SpeechRecognition();
+    if (SpeechGrammarList) {
+      const speechRecognitionList = new SpeechGrammarList();
+      speechRecognitionList.addFromString(grammar, 1);
+      recognition.grammars = speechRecognitionList;
+    }
+
+    recognition.lang = "en-GB";
+    console.log("start");
     recognition.start();
 
     recognition.continuous = true;
