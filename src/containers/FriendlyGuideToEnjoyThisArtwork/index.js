@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import * as S from "./styles";
 
 import useResize from "utils/hooks/useResize";
+import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 
 const QUESTIONS = [
   "What is your first reaction to the work?",
@@ -15,35 +16,10 @@ const QUESTIONS = [
   "Why don't you take a photograph of this list, so you can refer to it when you look at the art?",
 ];
 
-const GRAMMAR_LIST = [
-  "Shitty",
-  "Commercial",
-  "Awful",
-  "Disaster",
-  "Copy",
-  "Copycat",
-  `Don't want to`,
-  "Racist",
-  "Not",
-  `Ain't`,
-  "Never",
-  "Neither",
-  "Hardly",
-  "Worse",
-  "Worst",
-  "hate",
-  "hated",
-  "bad",
-  "no",
-  "nothing",
-];
-
-//to do: self-reflection effect(using webcam)
 function FriendlyGuideToEnjoyThisArtwork() {
   const [prepared, setPrepared] = useState(false);
   const [idx, setIdx] = useState(0);
   const [getAudioResponse, setGetAudioResponse] = useState(false);
-  const [answer, setAnswer] = useState(false);
 
   useEffect(() => {
     if (prepared && idx < QUESTIONS.length) {
@@ -58,6 +34,7 @@ function FriendlyGuideToEnjoyThisArtwork() {
     msg.rate = 1;
     synth.speak(msg);
     msg.addEventListener("end", () => {
+      console.log("61");
       setGetAudioResponse(true);
     });
   }
@@ -108,88 +85,41 @@ function FriendlyGuideToEnjoyThisArtwork() {
     setVideoReady(true);
   }
 
+  const { transcript, listening, resetTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition();
+
   useEffect(() => {
-    setupVoice();
+    SpeechRecognition.startListening();
+    const timeout = setTimeout(() => {
+      SpeechRecognition.stopListening();
+    }, 100);
+    return () => clearTimeout(timeout);
   }, []);
 
-  //audio rec
   useEffect(() => {
     if (getAudioResponse) {
-      analyseVoice();
+      SpeechRecognition.startListening();
     }
   }, [getAudioResponse]);
 
-  async function setupVoice() {
-    const grammar = `#JSGF V1.0; grammar phrase; public <phrase> = ${GRAMMAR_LIST.join(" | ")};`;
-
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    const SpeechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList;
-
-    const recognition = new SpeechRecognition();
-    if (SpeechGrammarList) {
-      const speechRecognitionList = new SpeechGrammarList();
-      speechRecognitionList.addFromString(grammar, 1);
-      recognition.grammars = speechRecognitionList;
-    }
-
-    recognition.lang = "en-GB";
-    recognition.start();
-
-    const timeout = setTimeout(() => {
-      recognition.stop();
-    }, 1000);
-    return () => clearTimeout(timeout);
-  }
-
-  //voice recognition test
-  async function analyseVoice() {
-    console.log("analyse");
-    const grammar = `#JSGF V1.0; grammar phrase; public <phrase> = ${GRAMMAR_LIST.join(" | ")};`;
-
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    const SpeechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList;
-
-    const recognition = new SpeechRecognition();
-    if (SpeechGrammarList) {
-      const speechRecognitionList = new SpeechGrammarList();
-      speechRecognitionList.addFromString(grammar, 1);
-      recognition.grammars = speechRecognitionList;
-    }
-
-    recognition.lang = "en-GB";
-    console.log("start");
-    recognition.start();
-
-    recognition.continuous = true;
-    recognition.interimResults = true;
-
-    recognition.onerror = (event) => {
-      setAnswer("not recognised");
-      console.log("Error occurred in recognition: " + event.error);
-    };
-
-    recognition.onresult = (event) => {
-      setAnswer(event.results[0][0].transcript);
-      setGetAudioResponse(false);
-    };
-  }
-
   useEffect(() => {
-    if (answer) {
+    if (getAudioResponse && transcript && transcript.length > 15) {
       const timeout = setTimeout(() => {
+        setGetAudioResponse(false);
         setIdx((idx) => idx + 1);
-        setAnswer("");
+        SpeechRecognition.stopListening();
       }, 2500);
 
       return () => clearTimeout(timeout);
     }
-  }, [answer]);
+  }, [listening, transcript]);
+
+  console.log(idx);
 
   return (
     <S.StyledFriendlyGuideToEnjoyThisArtwork onClick={() => setPrepared(true)}>
       <S.Video ref={videoRef} />
       <S.Text> {prepared ? (idx < QUESTIONS.length ? QUESTIONS[idx] : "The End") : "CLICK"}</S.Text>
-      <S.Answer>{answer}</S.Answer>
+      <S.Answer>{getAudioResponse ? transcript || "" : ""}</S.Answer>
     </S.StyledFriendlyGuideToEnjoyThisArtwork>
   );
 }
