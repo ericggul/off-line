@@ -25,7 +25,9 @@ import ModernTraveling from "containers/ModernTraveling";
 import Seconds from "containers/Seconds";
 import FriendlyGuideToEnjoyThisArtwork from "containers/FriendlyGuideToEnjoyThisArtwork";
 
-//Sep 2022
+//Oct 2022
+import Converter from "containers/Converter";
+
 import HappyBirthday from "containers/HappyBirthday";
 
 import Bascilica from "containers/Bascilica";
@@ -56,6 +58,8 @@ function App() {
           <Route exact path="/modern-traveling" element={<ModernTraveling />} />
           <Route exact path="/seconds" element={<Seconds />} />
           <Route exact path="/friendly-guide-to-enjoy-this-artwork" element={<FriendlyGuideToEnjoyThisArtwork />} />
+
+          <Route exact path="/converter" element={<Converter />} />
 
           <Route exact path="/happy-birthday" element={<HappyBirthday />} />
 

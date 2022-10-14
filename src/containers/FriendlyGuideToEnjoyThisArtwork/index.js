@@ -97,7 +97,7 @@ function FriendlyGuideToEnjoyThisArtwork() {
 
   useEffect(() => {
     if (getAudioResponse) {
-      SpeechRecognition.startListening();
+      SpeechRecognition.startListening({ continuous: true });
     }
   }, [getAudioResponse]);
 

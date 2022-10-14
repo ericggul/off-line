@@ -8,6 +8,13 @@ body {
   text-shadow: 0 0 0px #fff;
 
   overscroll-behavior-y: none;
+
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
 }
 
 body::-webkit-scrollbar {
@@ -21,6 +28,23 @@ input,
 textarea,
 button {
   font-family: inherit;
+}
+
+input {
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 /* fonts */
