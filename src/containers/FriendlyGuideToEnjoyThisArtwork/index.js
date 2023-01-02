@@ -4,6 +4,9 @@ import * as S from "./styles";
 import useResize from "utils/hooks/useResize";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 
+//toast
+import { toast, Toast } from "loplat-ui";
+
 const QUESTIONS = [
   "What is your first reaction to the work?",
   "What does it make you feel or think like that?",
@@ -24,6 +27,15 @@ function FriendlyGuideToEnjoyThisArtwork() {
   useEffect(() => {
     if (prepared && idx < QUESTIONS.length) {
       speak(QUESTIONS[idx]);
+      resetTranscript();
+    }
+    if (idx === QUESTIONS.length) {
+      const timeout = setTimeout(() => {
+        setPrepared(false);
+        setIdx(0);
+        setGetAudioResponse(false);
+      }, 10000);
+      return () => clearTimeout(timeout);
     }
   }, [idx, prepared]);
 
@@ -102,24 +114,32 @@ function FriendlyGuideToEnjoyThisArtwork() {
   }, [getAudioResponse]);
 
   useEffect(() => {
-    if (getAudioResponse && transcript && transcript.length > 15) {
+    if (getAudioResponse && transcript && transcript.length > 3) {
       const timeout = setTimeout(() => {
         setGetAudioResponse(false);
         setIdx((idx) => idx + 1);
         SpeechRecognition.stopListening();
-      }, 2500);
+      }, 2000);
 
       return () => clearTimeout(timeout);
     }
   }, [listening, transcript]);
 
-  console.log(idx);
+  useEffect(() => {
+    if (transcript.length === 0 && prepared && idx < QUESTIONS.length) {
+      const timeout = setTimeout(() => {
+        toast.info("Speak out your response!");
+      }, 5500);
+      return () => clearTimeout(timeout);
+    }
+  }, [transcript, prepared, idx]);
 
   return (
     <S.StyledFriendlyGuideToEnjoyThisArtwork onClick={() => setPrepared(true)}>
       <S.Video ref={videoRef} />
-      <S.Text> {prepared ? (idx < QUESTIONS.length ? QUESTIONS[idx] : "The End") : "CLICK"}</S.Text>
+      <S.Text> {prepared ? (idx < QUESTIONS.length ? QUESTIONS[idx] : "The End") : "CLICK TO START"}</S.Text>
       <S.Answer>{getAudioResponse ? transcript || "" : ""}</S.Answer>
+      <Toast duration={5000} />
     </S.StyledFriendlyGuideToEnjoyThisArtwork>
   );
 }

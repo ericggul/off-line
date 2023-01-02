@@ -6,6 +6,7 @@ export const StyledConverter = styled.div`
   flex-direction: column;
   ${WholeContainer};
   background: linear-gradient(#249f8c 0%, #9d9013 100%);
+  font-family: Times New Roman;
 `;
 
 const InputStyle = css`

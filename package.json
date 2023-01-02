@@ -4,6 +4,7 @@
   "private": false,
   "homepage": "https://ericggul.github.io/off-line",
   "dependencies": {
+    "@magenta/music": "^1.23.1",
     "@mediapipe/face_mesh": "^0.4.1633559619",
     "@mediapipe/pose": "^0.5.1635988162",
     "@react-spring/web": "^9.5.2",
@@ -28,6 +29,7 @@
     "hygen": "^6.2.7",
     "js-cookie": "^3.0.1",
     "keen-slider": "^6.7.0",
+    "loplat-ui": "^1.10.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.4.0",
     "react-dom": "^18.2.0",

@@ -27,6 +27,7 @@ import FriendlyGuideToEnjoyThisArtwork from "containers/FriendlyGuideToEnjoyThis
 
 //Oct 2022
 import Converter from "containers/Converter";
+import MagentaTest from "containers/MagentaTest";
 
 import HappyBirthday from "containers/HappyBirthday";
 
@@ -60,6 +61,7 @@ function App() {
           <Route exact path="/friendly-guide-to-enjoy-this-artwork" element={<FriendlyGuideToEnjoyThisArtwork />} />
 
           <Route exact path="/converter" element={<Converter />} />
+          <Route exact path="/magenta-test" element={<MagentaTest />} />
 
           <Route exact path="/happy-birthday" element={<HappyBirthday />} />
 

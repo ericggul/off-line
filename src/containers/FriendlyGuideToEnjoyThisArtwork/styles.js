@@ -6,15 +6,16 @@ export const StyledFriendlyGuideToEnjoyThisArtwork = styled.div`
   ${WholeContainer};
   flex-direction: column;
   background: #002fa7;
-  color: white;
-  font-size: 2rem;
-  text-transform: uppercase;
 `;
 
 export const Text = styled.div`
   width: 70%;
   text-align: center;
   opacity: 1;
+
+  color: white;
+  font-size: 2rem;
+  text-transform: uppercase;
 `;
 
 export const Answer = styled.div`
@@ -25,6 +26,7 @@ export const Answer = styled.div`
   text-align: center;
   opacity: 1;
   text-transform: lowercase;
+  color: white;
 `;
 
 export const Video = styled.video`
